@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import DependentReq from "../components/DependentReq.jsx";
 
 const ClassDetails = () => {
   const { id } = useParams();
-  const [classDetail, setClassDetail] = useState();
+  const [classDetail, setClassDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,18 +27,45 @@ const ClassDetails = () => {
       });
   }, [setClassDetail, setIsLoading, setError, id]);
 
-  console.log(classDetail);
+  console.log("classDetail", classDetail);
+  console.log("trainerId", classDetail?.trainerId);
 
   return (
     <div>
+      {isLoading && (
+        <section>
+          <article>
+            <h1>...Loading</h1>
+          </article>
+        </section>
+      )}
       {classDetail && (
         <>
-          <h1>{classDetail.className}</h1>
-          <p>{classDetail.classDescription}</p>
+          <section>
+            <article>
+              <h1>{classDetail.className}</h1>
+              <p>{classDetail.classDescription}</p>
+            </article>
+          </section>
         </>
+      )}
+      {classDetail?.trainerId && (
+        <section>
+          <DependentReq trainerId={classDetail?.trainerId} />
+        </section>
+      )}
+      {error && (
+        <section>
+          <article>
+            <h1>Fejl</h1>
+            <p>{error}</p>
+          </article>
+        </section>
       )}
     </div>
   );
 };
 
 export default ClassDetails;
+
+// <DependentReq trainerId={classDetail.trainerId} />
