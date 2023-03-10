@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { TokenContext } from "../contexts/TokenProvider";
 import { useNavigate } from "react-router-dom";
-import Filter from "../components/Filter";
 
 export default function Home() {
   const [classes, setClasses] = useState();
@@ -35,21 +34,27 @@ export default function Home() {
 
   return (
     <>
-      <h1 class="text-2xl">Home</h1>
-      {token && <h4>Velkommen bruger</h4>}
+      <h1>Home</h1>
       <section>
-        {isLoading && <p>..loading</p>}
-
-        {classes &&
-          classes?.map((item, index) => (
-            <article onClick={() => navigate(`/classdetails/${item.id}`)}>
-              <h2>{item.className}</h2>
-              <p>{item.classDescription}</p>
-            </article>
-          ))}
-        {error && <p>{error.message}</p>}
+        {isLoading && (
+          <article>
+            <h2>...loading</h2>
+          </article>
+        )}
+        {classes && (
+          <>
+            {classes?.map((item, index) => (
+              <article
+                key={index}
+                onClick={() => navigate(`/classdetails/${item.id}`)}
+                className="p-4"
+              >
+                <h2>{item.className}</h2>
+              </article>
+            ))}
+          </>
+        )}
       </section>
-      <Filter />
     </>
   );
 }
