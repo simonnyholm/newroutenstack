@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import DependentReq from "../components/DependentReq.jsx";
+import axios from "axios";
 
 const ClassDetails = () => {
   const { id } = useParams();
@@ -9,29 +10,29 @@ const ClassDetails = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/v1/classes/" + id)
-      .then((response) => {
-        if (!response.ok) {
-          throw Error("Vi kunne desværre ikke indlæse kursusinformationerne");
+    (async function () {
+      try {
+        const response = await axios.get(
+          "http://localhost:4000/api/v1/classes/" + id
+        );
+        console.log(response);
+        if (response.status === 200) {
+          setClassDetail(response.data);
         }
-        return response.json();
-      })
-      .then((data) => {
+      } catch (error) {
+        setError(error);
+        console.log(error);
+      } finally {
         setIsLoading(false);
-        setClassDetail(data);
-        setError(null);
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(err.message);
-      });
+      }
+    })();
   }, [setClassDetail, setIsLoading, setError, id]);
 
   console.log("classDetail", classDetail);
   console.log("trainerId", classDetail?.trainerId);
 
   return (
-    <div>
+    <>
       {isLoading && (
         <section>
           <article>
@@ -62,7 +63,7 @@ const ClassDetails = () => {
           </article>
         </section>
       )}
-    </div>
+    </>
   );
 };
 
