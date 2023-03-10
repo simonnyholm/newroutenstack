@@ -33,8 +33,6 @@ const Filter = () => {
     }
   }
 
-  useEffect((event) => {}, []);
-
   console.log("sr", searchResults);
 
   return (
