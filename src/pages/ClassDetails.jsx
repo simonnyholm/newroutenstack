@@ -55,7 +55,10 @@ const ClassDetails = () => {
       {classDetail?.trainerId && (
         <section>
           {renderDependentReq && (
-            <DependentReq trainerId={classDetail?.trainerId} />
+            <DependentReq
+              trainerId={classDetail?.trainerId}
+              set={classDetail}
+            />
           )}
         </section>
       )}
