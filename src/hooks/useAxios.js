@@ -31,3 +31,29 @@ export default function useAxios({ url, method = "GET", headers = {} }) {
 
   return { data, loading, error };
 }
+
+/*
+
+
+exampleComponent(){
+
+  
+  const { data, loading, error } = useA({
+    url: "http://localhost:4000/api/v1/classes",
+    method: "GET",
+    headers: {
+      accept: "application/json",
+    },
+  });
+
+      return(
+
+    <div>
+    MAP OVER eller RENDER DATA
+    </div>
+    
+
+    )
+}
+
+*/
