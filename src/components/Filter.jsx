@@ -14,9 +14,9 @@ const Filter = () => {
     { title: "Cucumberleaves", desc: "They are from cucumbers" },
   ];
 
+  //find ud af at lave opdelt søgeresultat med udgpkt i de givne kategorier (samt evt et samlet søgeresultat vha fx flatmap)
+
   const [searchTerm, setSearchTerm] = useState(null);
-  const [dairy, setDairy] = useState(arrayA);
-  const [veggies, setVeggies] = useState(arrayB);
   const [searchResults, setSearchResult] = useState();
   const [showResults, setShowResults] = useState(false);
 
