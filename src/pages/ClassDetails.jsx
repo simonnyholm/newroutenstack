@@ -8,6 +8,7 @@ const ClassDetails = () => {
   const [classDetail, setClassDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [renderDependentReq, setRenderDependentReq] = useState(false);
 
   useEffect(() => {
     (async function () {
@@ -24,6 +25,7 @@ const ClassDetails = () => {
         console.log(error);
       } finally {
         setIsLoading(false);
+        setRenderDependentReq(true);
       }
     })();
   }, [setClassDetail, setIsLoading, setError, id]);
@@ -52,7 +54,9 @@ const ClassDetails = () => {
       )}
       {classDetail?.trainerId && (
         <section>
-          <DependentReq trainerId={classDetail?.trainerId} />
+          {renderDependentReq && (
+            <DependentReq trainerId={classDetail?.trainerId} />
+          )}
         </section>
       )}
       {error && (
