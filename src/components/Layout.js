@@ -16,8 +16,10 @@ export default function Layout() {
   return (
     <>
       <header>
-        <nav>
-          <NavLink to="/">Home</NavLink>
+        <nav className="p-2">
+          <NavLink to="/" className="p-3 text-[28px}">
+            Home
+          </NavLink>
           {token && <NavLink to="/profile">Profile</NavLink>}
 
           {token ? (
