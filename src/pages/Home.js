@@ -31,6 +31,7 @@ export default function Home() {
   }, []);
 
   console.log("klasser", classes);
+  console.log(token);
 
   return (
     <>
@@ -53,6 +54,12 @@ export default function Home() {
               </article>
             ))}
           </>
+        )}
+        {error && (
+          <article>
+            <h2>Fejl</h2>
+            <p>{error}</p>
+          </article>
         )}
       </section>
     </>
