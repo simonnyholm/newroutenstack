@@ -10,7 +10,13 @@ const DependentReq = ({ trainerId }) => {
     },
   });
 
-  return <>{data && <p>{data?.trainerName}</p>}</>;
+  return (
+    <>
+      {loading && <p>...loading</p>}
+      {data && <p>{data?.trainerName}</p>}
+      {error && <p>{error}</p>}
+    </>
+  );
 };
 
 export default DependentReq;
