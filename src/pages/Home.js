@@ -3,6 +3,8 @@ import axios from "axios";
 import { TokenContext } from "../contexts/TokenProvider";
 import { useNavigate } from "react-router-dom";
 
+import Slider from "react-slick";
+
 export default function Home() {
   const [classes, setClasses] = useState();
   const [isLoading, setIsLoading] = useState();
@@ -33,6 +35,15 @@ export default function Home() {
   console.log("klasser", classes);
   console.log(token);
 
+  var settings = {
+    lazyLoad: false,
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
+
   return (
     <>
       <h1>Home</h1>
@@ -43,17 +54,18 @@ export default function Home() {
           </article>
         )}
         {classes && (
-          <>
+          <Slider {...settings}>
             {classes?.map((item, index) => (
-              <article
-                key={index}
-                onClick={() => navigate(`/classdetails/${item.id}`)}
-                className="p-4"
-              >
-                <h2>{item.className}</h2>
+              <article className="h-10 w-12 p-4 m-10" key={index}>
+                <div>
+                  <img src={item.asset.url} alt="" />
+                </div>
+                <h2 onClick={() => navigate(`/classdetails/${item.id}`)}>
+                  {item.className}
+                </h2>
               </article>
             ))}
-          </>
+          </Slider>
         )}
         {error && (
           <article>
@@ -62,6 +74,7 @@ export default function Home() {
           </article>
         )}
       </section>
+      <section></section>
     </>
   );
 }
