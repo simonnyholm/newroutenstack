@@ -75,5 +75,3 @@ const ClassDetails = () => {
 };
 
 export default ClassDetails;
-
-// <DependentReq trainerId={classDetail.trainerId} />
