@@ -4,6 +4,7 @@ import { TokenContext } from "../contexts/TokenProvider";
 import { useNavigate } from "react-router-dom";
 
 import Slider from "react-slick";
+import FormikForm from "../components/package/FormikForm";
 
 export default function Home() {
   const [classes, setClasses] = useState();
@@ -74,7 +75,9 @@ export default function Home() {
           </article>
         )}
       </section>
-      <section></section>
+      <section>
+        <FormikForm />
+      </section>
     </>
   );
 }
