@@ -14,14 +14,18 @@ const FilterNResults = ({ arr }) => {
   const [searchResult, setSearchResult] = useState(null);
 
   function handleSearch(event) {
-    setSearchTerm(event.target.value);
+    //try to replace state var with regular variable
+    const searchTermVar = event.target.value;
+    setSearchTerm(searchTermVar);
 
     const result = arr.filter(
       (item) =>
-        item.className.includes(searchTerm) ||
-        item.classDescription.includes(searchTerm)
+        item.className.includes(searchTermVar) ||
+        item.classDescription.includes(searchTermVar)
     );
     console.log("result", result);
+    console.log("Sterm", searchTermVar);
+    console.log("Sresult", searchResult);
 
     setSearchResult(result);
     if (searchTerm === null) {
